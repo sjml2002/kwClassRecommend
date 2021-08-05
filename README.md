@@ -1,3 +1,9 @@
+[2021/08/05 업데이트]
+
+- 회원가입 페이지와 서버 연결 완료
+- AWS 연결시 500 error 뜨면 DB sql query문 확인해볼것 (특히 대소문자)
+
+<br>
 [2021/07/30 업데이트]
 
 - location값 넣을때 id조회해서 age, gender, job도 같이 insert 해줌
