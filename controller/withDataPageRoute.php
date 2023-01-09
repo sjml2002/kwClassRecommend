@@ -42,7 +42,7 @@
         }
         else if($Data['pageURL'] === "SignupProcess") { //회원가입 요청
             require_once("../model/SignupProcess.php");
-            $result = signupProcess($Data["id"], $Data["pw"]);
+            $result = signupProcess($Data["id"], $Data["pw"], $Data["major"], $Data["subMajor"]);
             if($result) { //회원가입 성공
                 echo "true";
             }
