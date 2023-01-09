@@ -14,24 +14,39 @@
             const signupForm = document.getElementById("signupForm");
             const id = signupForm.ID.value;
             const pw = signupForm.PW.value;
+			const major = signupForm.Major.value;
+			const subMajor = signupForm.SubMajor.value;
+			const majorList = [
+				'전자공학과', '전자통신공학과', '전자융합공학과', '전자재료공학과', '전기공학과',  '로봇학부',
+				'컴퓨터정보공학부', '소프트웨어공학부', '정보융합학부',
+				'화학공학과', '환경공학과', '건축공학과', '건축학과',
+				'수학과', '화학과', '전자바이오물리학과', '스포츠융합학과',
+				'경영학부', '국제통상학부',
+				'국어국문학과', '영어산업학과', '산업심리학과', '미디어커뮤니케이션학부', '동북아문화산업학부',
+				'행정학과', '법학부', '국제학부',
+			]
 
-            //id 5자이상 20자이하 영문숫자만
-            const idReg = /^[a-z0-9]{6,20}$/;
-            const pwReg = /^[a-z0-9!@#$*]{8,20}$/;
-            if(!idReg.test(id)) {
-                //id 정규식 검사
-                //id는 6~20자 영문숫자로만
-                alert("id는 6~20자로 영문, 숫자로 입력해주세요. ")
+            const idReg = /^[0-9]{10}$/;
+            const pwReg = /^[a-zA-Z][a-zA-Z0-9!@#$*]{7,19}$/;
+            if(!idReg.test(id)) { //id 정규식 검사
+                alert("학번을 제대로 입력해주세요.")
             }
-            else if(!pwReg.test(pw)) {
-                //pw 정규식
+            else if(!pwReg.test(pw)) { //pw 정규식
                 //pw 8자~20자이하, 영문숫자 (특수문자)~, !, @, #, $,* 만
-                alert("비밀번호는 8~20자로 영문, 숫자, 특수문자(~,!,@,#,$,*)로 입력해주세요.");
+                alert("비밀번호는 영문을 시작으로 8~20자 영문, 숫자, 특수문자(~,!,@,#,$,*)로 입력해주세요.");
             }
+			else if(!majorList.includes(major)) {
+				alert(major + " 이라는 전공은 존재하지 않습니다.");
+			}
+			else if(subMajor!="" && !majorList.includes(subMajor)) {
+				alert(subMajor + " 이라는 전공은 존재하지 않습니다.");
+			}
             else { //id, pw 조건 통과 시
                 const signupData = JSON.stringify({
                     id: id,
                     pw: pw,
+					major: major,
+					subMajor: subMajor,
                     pageURL: "SignupProcess",
                     returnPageURL: "/index.html"
                 });
@@ -65,10 +80,17 @@
 	<body>
 		<h1> 회원가입 페이지 </h1>
 		<form id="signupForm">
-            <input type="text" id="ID" placeholder="아이디 입력" /> <br>
-            <p> id는 6~20자로 영문, 숫자로 입력해주세요. </p>
+			<p> 자신의 학번을 입력해주세요. (숫자12자리) </p>
+            <input type="text" id="ID" placeholder="학번 입력" /> <br>
+			<p> 비밀번호는 8~20자로 영문, 숫자, 특수문자(~,!,@,#,$,*)로 입력해주세요. </p>
             <input type="password" id="PW" placeholder="비밀번호 입력" /> <br>
-            <p> 비밀번호는 8~20자로 영문, 숫자, 특수문자(~,!,@,#,$,*)로 입력해주세요. </p>
+            <br>
+			
+			<p> 자신의 전공을 입력해주세요. </p>
+			<p> (띄어쓰기 없이 한글로 정확히 입력) </p>
+			<input type="text" id="Major" placeholder="전공 입력"/> <br>
+			<p> 자신의 부전공이 있다면 입력해주세요. (심화,복수,부전공) </p>
+			<input type="text" id="SubMajor" placeholder="부전공 입력"/> <br><br>
 			<button type="button" onclick="signupSend()"> 회원가입 </button>
 		</form>
 	</body>

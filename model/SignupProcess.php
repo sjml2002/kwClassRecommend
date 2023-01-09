@@ -1,16 +1,14 @@
 <?php
     //root function
-    function signupProcess($id, $pw) { 
-        return userDTO($id, $pw); //true면 회원가입 성공
-    }
-
-    function userDTO($id, $pw) {
-        require_once("../model/DTO/signupDTO.php");
-        $signUser = new SignupUserDTO($id, $pw);
+    function signupProcess($id, $pw, $major, $subMajor) { 
+		//create userDTO
+		require_once("../model/DTO/signupDTO.php");
+        $signUser = new SignupUserDTO($id, $pw, $major, $subMajor);
+		
         return signupDBinsert($signUser);
     }
 
-    function signupDBinsert($signUser){ //login->signup 변경
+    function signupDBinsert($signUser){
         require_once("../model/DAO/signupDAO.php");
         $signupSQLobject = new SignupSQL($signUser);
         if($signupSQLobject->checkObject()){

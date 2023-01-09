@@ -55,12 +55,14 @@ DROP TABLE IF EXISTS `user_info`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `user_info` (
-  `id` varchar(100) NOT NULL,
-  `pw` varchar(100) NOT NULL,
-  `salt` varchar(100) NOT NULL,
-  `sessionToken` varchar(100) DEFAULT NULL,
+  `id` varchar(100) CHARACTER SET utf8mb4 NOT NULL,
+  `pw` varchar(100) CHARACTER SET utf8mb4 NOT NULL,
+  `salt` varchar(100) CHARACTER SET utf8mb4 NOT NULL,
+  `sessionToken` varchar(100) CHARACTER SET utf8mb4 DEFAULT NULL,
+  `major` varchar(30) CHARACTER SET utf8mb4 NOT NULL,
+  `subMajor` varchar(30) CHARACTER SET utf8mb4 DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -69,7 +71,7 @@ CREATE TABLE `user_info` (
 
 LOCK TABLES `user_info` WRITE;
 /*!40000 ALTER TABLE `user_info` DISABLE KEYS */;
-INSERT INTO `user_info` VALUES ('js2002','$2y$10$FQbSROAanK2ka04tzfaimuegCp.ZajdbIqxJn7ejQog/1dXpSmX4a','8fe34a61747bb20f106fd364502ff8de987b4b89d34550c30722c53f50ddf934','');
+INSERT INTO `user_info` VALUES ('2021202054','$2y$10$E5XCK0O0bxpPyJrGrQ6hh.V9WdYZVOCQEel.8MMPzFHUELW9cGy.O','6a7b8b3351e196cb2e0483119fff6764dda93e85dc39623ae6b399968508c5f9',NULL,'컴퓨터정보공학부','수학과'),('2021202055','$2y$10$8SyvZkwGNZ6j/9Ss4AFmeOKdNyR10.DB5JqaeDa8olzhnianfLMJa','1409641e78e67bbe140266208986e9f9fd02d1818ca1ee1d6ce7e37985024efe','','컴퓨터정보공학부','');
 /*!40000 ALTER TABLE `user_info` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -82,4 +84,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2023-01-08  1:48:22
+-- Dump completed on 2023-01-09  5:06:49
