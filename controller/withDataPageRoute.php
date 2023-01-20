@@ -1,4 +1,5 @@
 <?php
+	require_once('../lib/set_result.php');
     //대부분 model 디렉토리와 연관있는 요청
     //model폴더 페이지 이름과 데이터(JSON으로 받기) 각종 http method로 받기
     //데이터가 없거나(일부 요청만) 페이지 이름 일치하는 것이 없는 경우 예외처리
@@ -31,24 +32,16 @@
             //연결 요청에 따라 데이터 받고 보내기
             require_once("../model/LoginProcess.php");
             $result = loginProcess($Data["id"], $Data["pw"]);
-            if($result){ 
-                //로그인 성공
-                echo "true";
-            }
-            else{
-                //로그인 실패
-                echo "false";
-            }
+			$result = json_decode($result);
+			if ($result->res) { echo "true"; }
+			else { echo $result->msg; }
         }
         else if($Data['pageURL'] === "SignupProcess") { //회원가입 요청
             require_once("../model/SignupProcess.php");
             $result = signupProcess($Data["id"], $Data["pw"], $Data["major"], $Data["subMajor"]);
-            if($result) { //회원가입 성공
-                echo "true";
-            }
-            else {
-                echo "false";
-            }
+			$result = json_decode($result);
+           	if ($result->res) { echo "true"; }
+			else { echo $result->msg; }
         }
         else if($Data['pageURL'] === "SessionVerify") { //세션 확인
             require_once("../model/SessionVerify.php");
@@ -89,15 +82,6 @@
         }
     } catch(exception $e){
         //XMLHttpRequest에 htttpStateCode를 response보내는 걸로 해서 view에서 처리
-        if($e->getMessage() === "400"){
-            header('Location: /view/errorPage/400BadRequest.html');
-        }
-        else if($e->getMessage() === "404"){
-            header('Location: /view/errorPage/404NotFound.html');
-        }
-        else if($e->getMessage() === "500"){
-            header('Location: /view/errorPage/500InternalServerError.html');
-            //header location으로 500error페이지 만들어서 랜딩
-        }
+        route_errorPage($e->getMessage());
     }
 ?>

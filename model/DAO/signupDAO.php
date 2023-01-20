@@ -26,23 +26,5 @@
                 return false;
             }
         }
-
-        public function checkObject() {
-            //else if로 이메일과 pw 정규식으로 양식 확인
-            if(empty($this->id) || empty($this->pw)) {
-                return false;
-            }
-            else{
-                $idReg = "/^[0-9]{10}$/";
-                $pwReg = "/^[a-zA-Z][a-zA-Z0-9!@#$*]{7,19}$/";
-                if(preg_match($idReg, $this->id) || preg_match($pwReg, $this->pw)){
-                    return true;
-                }
-                else{
-                    return false;
-                }
-                
-            }
-        }
     }
 ?>
