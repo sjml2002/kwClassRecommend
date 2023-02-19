@@ -27,8 +27,8 @@
         else if($_GET['pageURL'] == "signupMain") {
             header('Location: /view/signupMain.html');
         }
-        else if($_GET['pageURL'] == "createProject") {
-            header('Location: /view/createProject.html');
+        else if($_GET['pageURL'] == "inputForAnalysis") {
+            header('Location: /view/inputForAnalysis.html');
         }
         else{
             throw new exception("404");

@@ -63,18 +63,14 @@
                 echo "false";
             }
         }
-        else if($Data['pageURL'] === "ProjectCreating") { //프로젝트 생성
-            require_once("../model/ProjectCreating.php");
-            $result = projectCreating(
-                $Data['category'], $Data['writer'], 
-                $Data['age'], $Data['region'], $Data['one_or_company'],
-                $Data['content'], $Data['img']
-            );
+        else if($Data['pageURL'] === "classAnalysis") { //프로젝트 생성
+            require_once("../model/classAnalysis.php");
+            $result = classAnalysisMain($Data['major'], $Data['submajor'], $Data['year'], $Data['semester']);
             if($result) {
                 echo "true";
             }
             else{
-                echo "false";
+                echo $result;
             }
         }
         else{

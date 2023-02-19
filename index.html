@@ -87,7 +87,7 @@
 		<!-- 로그아웃 -->
 		<div id="logoutDIV" style="display:none">
 			<p id="userIDinfo"> </p>
-			<form action="/controller/withDataPageRoute.php" method="GET">
+			<form>
 				<button type="button" onclick="logoutRequest()"> 로그아웃 </button>
 			</form>
 		</div>
@@ -104,9 +104,9 @@
 
 		<!-- 프로젝트 생성 -->
 		<form action="/controller/rendingPageRoute.php" method="GET">
-			<input type="hidden" name="pageURL" value="createProject"/>
-			<input type="hidden" name="returnPageURL" value="createProject.html"/>
-			<button> 프로젝트 생성 </button>
+			<input type="hidden" name="pageURL" value="inputForAnalysis"/>
+			<input type="hidden" name="returnPageURL" value="inputForAnalysis.html"/>
+			<button> 강의 추천받으러 가기! </button>
 		</form>
 
 		
