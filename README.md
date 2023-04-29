@@ -10,6 +10,8 @@
 
 ########## 기록 ##########
 <br>
+- 2023/04/29
+	- (modify) classList에 2022년도 2학기 강의 추가 완료
 - 2023/02/19
 	- (modify) createProject -> inputForAnalysis
 	- (create) model/classAnalysis.php
