@@ -65,7 +65,7 @@
         }
         else if($Data['pageURL'] === "classAnalysis") { //프로젝트 생성
             require_once("../model/classAnalysis.php");
-            $result = classAnalysisMain($Data['major'], $Data['submajor'], $Data['year'], $Data['semester']);
+            $result = classAnalysisMain($Data);
             if($result) {
                 echo "true";
             }

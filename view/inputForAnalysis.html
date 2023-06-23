@@ -26,6 +26,9 @@
             
 		}
 		*/
+		function ClassTest() {
+			
+		}
 
         function InfoSend() {
             const inputForm = document.getElementById("inputForm");
@@ -38,25 +41,67 @@
 			const yearValue = yearTarget.options[yearTarget.selectedIndex].value;
 			const semesterTarget = document.getElementById("semesterBox");
 			const semesterValue = semesterTarget.options[semesterTarget.selectedIndex].value;
-
-            const reqData = JSON.stringify({
-				major: majorValue,
-				submajor: submajorValue,
-				year: yearValue,
-				semester: semesterValue,
-                pageURL: "classAnalysis",
-                returnPageURL: "/index.html"
-            });
-            const url = "/controller/withDataPageRoute.php?data=" + reqData;
-            HttpRequest(url, function(resultData) {
-                if(resultData === "true") {
-                    window.location.href = "/index.html";
-                }
-                else {
-					console.log(resultData);
-                    alert("실패... 다시 시도해주세요.");
-                }
-            });
+			const divideClassValue = document.getElementById("divideClass").value;
+			let assignmentValue = '';
+			let gradeValue = '';
+			let attendanceValue = '';
+			let teamplayValue = '';
+			let examValue = '';
+			let assignments = document.getElementsByName("assignment");
+			for (let assignment of assignments) {
+				if (assignment.checked)
+					assignmentValue = assignment.value;
+			}
+			let grades = document.getElementsByName("grade");
+			for (let grade of grades) {
+				if (grade.checked)
+					gradeValue = grade.value;
+			}
+			let attendances = document.getElementsByName("attendance");
+			for (let attendance of attendances) {
+				if (attendance.checked)
+					attendanceValue = attendance.value;
+			}
+			let teamplays = document.getElementsByName("teamplay");
+			for (let teamplay of teamplays) {
+				if (teamplay.checked)
+					teamplayValue = teamplay.value;
+			}
+			let exams = document.getElementsByName("exam");
+			for (let exam of exams) {
+				if (exam.checked)
+					examValue = exam.value;
+			}
+			
+			if (assignmentValue=='' || gradeValue=='' || attendanceValue=='' || teamplayValue=='' || examValue=='') {
+				alert("강의 테스트가 제대로 입력되지 않았습니다!");
+			}
+			else {
+				const reqData = JSON.stringify({
+					major: majorValue,
+					submajor: submajorValue,
+					year: yearValue,
+					semester: semesterValue,
+					divideClass: divideClassValue,
+					assignment: assignmentValue,
+					grade: gradeValue,
+					attendance: attendanceValue,
+					teamplay: teamplayValue,
+					exam: examValue,
+					pageURL: "classAnalysis",
+					returnPageURL: "/index.html"
+				});
+				const url = "/controller/withDataPageRoute.php?data=" + reqData;
+				HttpRequest(url, function(resultData) {
+					if(resultData === "true") {
+						window.location.href = "/index.html";
+					}
+					else {
+						console.log(resultData);
+						alert("실패... 다시 시도해주세요.");
+					}
+				});
+			}
         }
 		
 		//httpRequest로 데이터 보내기 (withDataPageRouting.php에만 적용)
@@ -160,10 +205,54 @@
 					<option value="2"> 2학기 </option>
 				</select>
 			</div>
-			<div name="test">
-				사용자 유형 파악 테스트 결과 정보 받아오기 (추후 진행 예정)
+			<div name="divdeClass">
+				분반: <input id="divideClass" type="text" placeholder="알파벳은 대문자로 입력" />
 			</div>
-            <input type="button" value="강의 추천받으러 진짜 가기!!" onclick="InfoSend()"/>
+			<div name="test">
+				<p> 나에게 맞는 강의 테스트하기! </p>
+				<div name="assignmentBox">
+					<p name="question"> 나는... </p>
+					<input type="radio" name="assignment" value="많음" />
+					<label for="많음"> 과제가 많은 대신 시험성적비율이 적었으면 좋겠다. </label>
+					<input type="radio" name="assignment" value="보통" />
+					<label for="보통"> 적당한게 좋다 </label>
+					<input type="radio" name="assignment" value="적음" />
+					<label for="적음"> 역시 과제는 적은게 좋지! </label>
+				</div>
+				<div name="gradeBox">
+					<p name="question"> 나는 성적이... </p>
+					<input type="radio" name="grade" value="깐깐함" />
+					<label for="깐깐함"> 깐깐한게 좋다. 왜냐면 난 어차피 잘할거거든 </label>
+					<input type="radio" name="grade" value="너그러움" />
+					<label for="너그러움"> 교수님 제가 이따구지만 성적은 잘 주실거죠...? </label>
+				</div>
+				<div name="attendanceBox">
+					<p name="question"> 나는 교수님이... </p>
+					<input type="radio" name="attendance" value="직접" />
+					<label for="직접"> 출석은 직접 호명해주셨으면 좋겠다. </label>
+					<input type="radio" name="attendance" value="전자" />
+					<label for="전자"> 그냥 조용히 있고 싶어.. 알아서 하시면 좋겠다. </label>
+				</div>
+				<div name="teamplayBox">
+					<p name="question"> 나는 팀플이... </p>
+					<input type="radio" name="teamplay" value="많음" />
+					<label for="많음"> 역시 대학생활은 팀플이지! </label>
+					<input type="radio" name="teamplay" value="보통" />
+					<label for="보통"> 그냥 뭐 있으면 있는거고 없으면 없는거지. </label>
+					<input type="radio" name="teamplay" value="적음" />
+					<label for="적음"> 난 마이웨이로 간다. 팀플 싫어 ㅜㅜ </label>
+				</div>
+				<div name="examBox">
+					<p name="question"> 나는... </p>
+					<input type="radio" name="exam" value="한번" />
+					<label for="한번"> 시험대신 과제로 안될까? 시험대체과제 짱! </label>
+					<input type="radio" name="exam" value="두번" />
+					<label for="두번"> 이제 기회는 한번뿐! 시험에 올인한다. </label>
+				</div>
+			</div>
+			<div>
+				<input type="button" value="강의 추천받으러 진짜 가기!!" onclick="InfoSend()"/>
+			</div>
 		</form>
 	</body>
 </html>
