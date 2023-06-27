@@ -11,6 +11,8 @@
 
 ########## 기록 ##########
 <br>
+- 2023/06/27
+	- (modify) DB table user_info의 major 및 submajor 의 FK 생성 후 majorList의 name 과 연결
 - 2023/06/23
 	- (modify) 입력 폼에서 분반 및 강의 파악 테스트지 추가 완료 [classAnalysis]
 - 2023/04/29
