@@ -1,3 +1,5 @@
+> [나의 dbdiagram](https://dbdiagram.io/d/649a69d802bd1c4a5e1cc00c)
+
 @@@@@@ 해야할 것 (계속해서 갱신) @@@@@@
 - 강의 별 게시판 만들기
 - result view 만들기
