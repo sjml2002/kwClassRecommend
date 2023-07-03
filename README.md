@@ -1,7 +1,8 @@
 > [나의 dbdiagram](https://dbdiagram.io/d/649a69d802bd1c4a5e1cc00c)
 
 @@@@@@ 해야할 것 (계속해서 갱신) @@@@@@
-- 강의 별 게시판 만들기
+- 강의 별 게시판 view 만들기
+- 강의 별 게시판 벡엔드 만들기
 - result view 만들기
 
 > 밑의 회원정보와 관련된건 mvp 우선 만들고 생각해보기
@@ -13,6 +14,9 @@
 
 ########## 기록 ##########
 <br>
+- 2023/07/03
+	- (delete) subMajor 삭제
+	- (create) 강의 별 게시판 DB
 - 2023/06/27
 	- (modify) DB table user_info의 major 및 submajor 의 FK 생성 후 majorList의 name 과 연결
 - 2023/06/23
