@@ -2,7 +2,6 @@
     //root function
     function classAnalysisMain($Data) {
         echo "전공: ".$Data['major']."\n";
-		echo "부전공: ".$Data['submajor']."\n";
 		echo $Data['year']."학년"."\n";
 		echo $Data['semester']."학기"."\n";
 		echo "분반: ".$Data['divideClass']."\n";
@@ -16,5 +15,4 @@
 		//여기서 강의 리스트 저장한 DB에서 사용자와 맞는 강의 가져오면 됨
 		return (true);
     }
-
 ?>
