@@ -178,7 +178,7 @@
 					<label for="많음"> 과제가 많은 대신 시험성적비율이 적었으면 좋겠다. </label>
 					<input type="radio" name="assignment" value="보통" />
 					<label for="보통"> 적당한게 좋다 </label>
-					<input type="radio" name="assignment" value="적음" />
+					<input type="radio" name="assignment" value="없음" />
 					<label for="적음"> 역시 과제는 적은게 좋지! </label>
 				</div>
 				<div name="gradeBox">
@@ -190,10 +190,14 @@
 				</div>
 				<div name="attendanceBox">
 					<p name="question"> 나는 교수님이... </p>
-					<input type="radio" name="attendance" value="직접" />
+					<input type="radio" name="attendance" value="직접호명" />
 					<label for="직접"> 출석은 직접 호명해주셨으면 좋겠다. </label>
-					<input type="radio" name="attendance" value="전자" />
+					<input type="radio" name="attendance" value="전자출결" />
 					<label for="전자"> 그냥 조용히 있고 싶어.. 알아서 하시면 좋겠다. </label>
+					<input type="radio" name="attendance" value="반영안함" />
+					<label for="직접"> 출석은 제발 성적에 포함되지 않게 해주세요...! </label>
+					<input type="radio" name="attendance" value="복합적" />
+					<label for="직접"> 상관없다. </label>
 				</div>
 				<div name="teamplayBox">
 					<p name="question"> 나는 팀플이... </p>
@@ -201,14 +205,16 @@
 					<label for="많음"> 역시 대학생활은 팀플이지! </label>
 					<input type="radio" name="teamplay" value="보통" />
 					<label for="보통"> 그냥 뭐 있으면 있는거고 없으면 없는거지. </label>
-					<input type="radio" name="teamplay" value="적음" />
+					<input type="radio" name="teamplay" value="없음" />
 					<label for="적음"> 난 마이웨이로 간다. 팀플 싫어 ㅜㅜ </label>
 				</div>
 				<div name="examBox">
 					<p name="question"> 나는... </p>
-					<input type="radio" name="exam" value="한번" />
+					<input type="radio" name="exam" value="없음" />
 					<label for="한번"> 시험대신 과제로 안될까? 시험대체과제 짱! </label>
 					<input type="radio" name="exam" value="두번" />
+					<label for="한번"> 그냥 중간, 기말 있으면 무난무난하다. </label>
+					<input type="radio" name="exam" value="세번" />
 					<label for="두번"> 이제 기회는 한번뿐! 시험에 올인한다. </label>
 				</div>
 			</div>
