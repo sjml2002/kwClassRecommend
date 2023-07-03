@@ -46,6 +46,36 @@ INSERT INTO `classList` VALUES ('0000-1-0221-01','과학철학의이해','교선
 UNLOCK TABLES;
 
 --
+-- Table structure for table `commentTable`
+--
+
+DROP TABLE IF EXISTS `commentTable`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `commentTable` (
+  `commentID` int(11) NOT NULL AUTO_INCREMENT,
+  `postID` int(11) NOT NULL,
+  `userID` varchar(100) DEFAULT NULL,
+  `writeDate` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `content` text NOT NULL,
+  PRIMARY KEY (`commentID`),
+  KEY `FK_COMMENT_POSTID` (`postID`),
+  KEY `FK_COMMENT_USERID` (`userID`),
+  CONSTRAINT `FK_COMMENT_POSTID` FOREIGN KEY (`postID`) REFERENCES `postTable` (`postID`) ON DELETE CASCADE,
+  CONSTRAINT `FK_COMMENT_USERID` FOREIGN KEY (`userID`) REFERENCES `user_info` (`id`) ON DELETE SET NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `commentTable`
+--
+
+LOCK TABLES `commentTable` WRITE;
+/*!40000 ALTER TABLE `commentTable` DISABLE KEYS */;
+/*!40000 ALTER TABLE `commentTable` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
 -- Table structure for table `majorList`
 --
 
@@ -70,6 +100,36 @@ INSERT INTO `majorList` VALUES ('공과대학','건축공학과'),('공과대학
 UNLOCK TABLES;
 
 --
+-- Table structure for table `postTable`
+--
+
+DROP TABLE IF EXISTS `postTable`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `postTable` (
+  `postID` int(11) NOT NULL AUTO_INCREMENT,
+  `classNumber` varchar(15) NOT NULL,
+  `userID` varchar(100) DEFAULT NULL,
+  `writeDate` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `content` mediumtext NOT NULL,
+  PRIMARY KEY (`postID`),
+  KEY `FK_POST_CLASSID` (`classNumber`),
+  KEY `FK_POST_USERID` (`userID`),
+  CONSTRAINT `FK_POST_CLASSID` FOREIGN KEY (`classNumber`) REFERENCES `classList` (`number`) ON DELETE CASCADE,
+  CONSTRAINT `FK_POST_USERID` FOREIGN KEY (`userID`) REFERENCES `user_info` (`id`) ON DELETE SET NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `postTable`
+--
+
+LOCK TABLES `postTable` WRITE;
+/*!40000 ALTER TABLE `postTable` DISABLE KEYS */;
+/*!40000 ALTER TABLE `postTable` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
 -- Table structure for table `user_info`
 --
 
@@ -77,17 +137,14 @@ DROP TABLE IF EXISTS `user_info`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `user_info` (
-  `id` varchar(100) CHARACTER SET utf8mb4 NOT NULL,
-  `pw` varchar(100) CHARACTER SET utf8mb4 NOT NULL,
-  `salt` varchar(100) CHARACTER SET utf8mb4 NOT NULL,
-  `sessionToken` varchar(100) CHARACTER SET utf8mb4 DEFAULT NULL,
+  `id` varchar(100) NOT NULL,
+  `pw` varchar(100) NOT NULL,
+  `salt` varchar(100) NOT NULL,
+  `sessionToken` varchar(100) DEFAULT NULL,
   `major` varchar(15) NOT NULL,
-  `subMajor` varchar(15) DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `FK_USER_MAJOR` (`major`),
-  KEY `FK_USER_SUBMAJOR` (`subMajor`),
-  CONSTRAINT `FK_USER_MAJOR` FOREIGN KEY (`major`) REFERENCES `majorList` (`name`),
-  CONSTRAINT `FK_USER_SUBMAJOR` FOREIGN KEY (`subMajor`) REFERENCES `majorList` (`name`)
+  CONSTRAINT `FK_USER_MAJOR` FOREIGN KEY (`major`) REFERENCES `majorList` (`name`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -97,7 +154,7 @@ CREATE TABLE `user_info` (
 
 LOCK TABLES `user_info` WRITE;
 /*!40000 ALTER TABLE `user_info` DISABLE KEYS */;
-INSERT INTO `user_info` VALUES ('2021202054','$2y$10$E5XCK0O0bxpPyJrGrQ6hh.V9WdYZVOCQEel.8MMPzFHUELW9cGy.O','6a7b8b3351e196cb2e0483119fff6764dda93e85dc39623ae6b399968508c5f9',NULL,'컴퓨터정보공학부',NULL),('2021202055','$2y$10$8SyvZkwGNZ6j/9Ss4AFmeOKdNyR10.DB5JqaeDa8olzhnianfLMJa','1409641e78e67bbe140266208986e9f9fd02d1818ca1ee1d6ce7e37985024efe','ddd4a8b3d36717d30fa5e1b1440289f9','컴퓨터정보공학부',NULL),('2022202080','$2y$10$qKxkWWA4S8a6k9Cu2ENjUO8TTfd5Uy8K4rnSwRa7aBx397Oqjqa.y','4ae51e2c818b85597af475b7fd6c6427dee321d7358e574f9955c5ec1196081d',NULL,'컴퓨터정보공학부',NULL);
+INSERT INTO `user_info` VALUES ('2021202054','$2y$10$E5XCK0O0bxpPyJrGrQ6hh.V9WdYZVOCQEel.8MMPzFHUELW9cGy.O','6a7b8b3351e196cb2e0483119fff6764dda93e85dc39623ae6b399968508c5f9',NULL,'컴퓨터정보공학부'),('2021202055','$2y$10$8SyvZkwGNZ6j/9Ss4AFmeOKdNyR10.DB5JqaeDa8olzhnianfLMJa','1409641e78e67bbe140266208986e9f9fd02d1818ca1ee1d6ce7e37985024efe','ddd4a8b3d36717d30fa5e1b1440289f9','컴퓨터정보공학부'),('2022202080','$2y$10$qKxkWWA4S8a6k9Cu2ENjUO8TTfd5Uy8K4rnSwRa7aBx397Oqjqa.y','4ae51e2c818b85597af475b7fd6c6427dee321d7358e574f9955c5ec1196081d',NULL,'컴퓨터정보공학부');
 /*!40000 ALTER TABLE `user_info` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -110,4 +167,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2023-06-27  5:34:48
+-- Dump completed on 2023-07-03  5:53:48
