@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="ko">
+	<head>
+		<title> SCP Signup </title>
+		<meta charset="utf-8" content-type="application/json" />
+	</head>
+
+	<script>
+		window.onload = function(){
+			selectClass();
+			function selectClass() {
+				const Data = JSON.stringify({
+					pageURL: "classList",
+					query: "selectAll",
+				});
+				const url = "/controller/withDataPageRoute.php?data=" + Data;
+
+				const request = HttpRequest(url);
+				//get response
+				request.onreadystatechange = function() {
+					if(request.readyState===XMLHttpRequest.DONE){
+						console.log(request.response); //Debuging
+						// const loginDIV = document.getElementById("loginDIV");
+						// const logoutDIV = document.getElementById("logoutDIV");
+						// if(request.response !== "false") {
+						// 	const id = request.response;
+						// 	//세션값 정상
+						// 	const userIDinfo = document.getElementById("userIDinfo");
+						// 	userIDinfo.innerHTML = "안녕하세요! " + id + "님!";
+						// 	loginDIV.style.display = "none";
+						// 	logoutDIV.style.display = "block";
+						// }
+						// else{
+						// 	loginDIV.style.display = "block";
+						// 	logoutDIV.style.display = "none";
+						// }
+						// //조건이 거짓이라면 비로그인이거나 세션값이 비정상임
+					}
+				}
+			}
+			//httpRequest로 데이터 보내기 (withDataPageRouting.php에만 적용)
+			function HttpRequest(url){
+				request = new XMLHttpRequest();
+				request.open("GET", url, true);
+				request.setRequestHeader("Content-type", "application/json");
+				request.send(); //$_GET['data']
+				//get response
+				return (request);
+			}
+		}
+	</script>
+
+	<body>
+		<h1> 강의 게시판 </h1>
+		<p>
+			여기에 select 한 강의들 innert html 로 띄워보자
+		</p>
+	</body>
+</html>

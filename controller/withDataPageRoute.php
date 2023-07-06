@@ -63,7 +63,7 @@
                 echo "false";
             }
         }
-        else if($Data['pageURL'] === "classAnalysis") { //프로젝트 생성
+        else if($Data['pageURL'] === "classAnalysis") { //강의 추천 요청
             require_once("../model/classAnalysis.php");
             $result = classAnalysisMain($Data);
             if($result) {
@@ -73,6 +73,13 @@
                 echo $result;
             }
         }
+		else if($Data['pageURL'] === "classList") { //강의 List 관련 query
+			require_once("../model/classListQueryMain.php");
+			$result = classListQueryMain($Data);
+			$result = json_decode($result);
+			if ($result->res) { echo ($result->data); }
+			else { echo $result->msg; }
+		}
         else{
             throw new exception("404");
         }

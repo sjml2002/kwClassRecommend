@@ -92,7 +92,7 @@
 			</form>
 		</div>
 
-		&nbsp; &nbsp;
+		<br>
 		
 		<!-- 회원가입 -->
 		<form action="/controller/rendingPageRoute.php" method="GET">
@@ -102,13 +102,21 @@
 		</form>
 		<br>
 
-		<!-- 프로젝트 생성 -->
+		<!-- 강의 추천 -->
 		<form action="/controller/rendingPageRoute.php" method="GET">
 			<input type="hidden" name="pageURL" value="inputForAnalysis"/>
 			<input type="hidden" name="returnPageURL" value="inputForAnalysis.html"/>
 			<button> 강의 추천받으러 가기! </button>
 		</form>
 
+		<br>
+		
+		<!-- 강의 별 게시판 -->
+		<form action="/controller/rendingPageRoute.php" method="GET">
+			<input type="hidden" name="pageURL" value="classGalleryMain"/>
+			<input type="hidden" name="returnPageURL" value="classGalleryMain.html"/>
+			<button> 강의 게시판 </button>
+		</form>
 		
 	</body>
 </html>

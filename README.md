@@ -1,6 +1,8 @@
 > [나의 dbdiagram](https://dbdiagram.io/d/649a69d802bd1c4a5e1cc00c)
 
 @@@@@@ 해야할 것 (계속해서 갱신) @@@@@@
+- classDAO -> fetch_row 한거 classGalleryMain(view) 로 제대로 넘어오는지 확인하기 (먼저하기!!)
+
 - 강의 별 게시판 view 만들기
 - 강의 별 게시판 벡엔드 만들기
 - result view 만들기
@@ -14,6 +16,8 @@
 
 ########## 기록 ##########
 <br>
+- 2023/07/06
+	- (create) 강의 별 게시판 초기 작업 진행 중 (방 만들기 진행중)
 - 2023/07/03
 	- (delete) subMajor 삭제
 	- (create) 강의 별 게시판 DB

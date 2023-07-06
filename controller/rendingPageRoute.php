@@ -30,6 +30,9 @@
         else if($_GET['pageURL'] == "inputForAnalysis") {
             header('Location: /view/inputForAnalysis.html');
         }
+		else if($_GET['pageURL'] == "classGalleryMain") {
+			header('Location: /view/classGalleryMain.html');
+		}
         else{
             throw new exception("404");
         }
