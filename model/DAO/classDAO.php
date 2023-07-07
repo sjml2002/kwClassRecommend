@@ -29,7 +29,7 @@
         function querySelectAll(){
             try{
                 require_once("../model/DBconnect.php");
-				$classSelect = $db_conn->prepare("select name, professor, period from classList");
+				$classSelect = $db_conn->prepare("select name, professor, period from classList limit 10");
 				$classSelect->execute();
 				$result = $classSelect->get_result();
 				$resultData = array();
