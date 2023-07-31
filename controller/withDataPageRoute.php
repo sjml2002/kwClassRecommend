@@ -77,7 +77,11 @@
 			require_once("../model/classListQueryMain.php");
 			$result = classListQueryMain($Data);
 			$result = json_decode($result);
-			if ($result->res) { echo ($result->data); }
+			if ($result->res) { 
+                foreach($result->data as $className) {
+                    echo ($className."/");
+                }
+            }
 			else { echo $result->msg; }
 		}
         else{

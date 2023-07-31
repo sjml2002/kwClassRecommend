@@ -4,7 +4,7 @@
     function classListQueryMain($Data) {
 		//create class DTO
 		require_once("../model/DTO/classDTO.php");
-		$classParams = new classDTO($Data['classNumber'], $Data['className'], $Data['classMode'], $Data['classProfessor'], $Data['classPeriod'], $Data['classGrades'], $Data['classNote'], $Data['classDivide']);
+		$classParams = new classDTO(@$Data['classNumber'], @$Data['className'], @$Data['classMode'], @$Data['classProfessor'], @$Data['classPeriod'], @$Data['classGrades'], @$Data['classNote'], @$Data['classDivide']);
 		require_once("../model/DAO/classDAO.php");
 		$classListSQL = new classListSQL($classParams);
 		

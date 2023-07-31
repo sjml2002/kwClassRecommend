@@ -29,13 +29,14 @@
         function querySelectAll(){
             try{
                 require_once("../model/DBconnect.php");
-				$classSelect = $db_conn->prepare("select name, professor, period from classList limit 1");
+				$classSelect = $db_conn->prepare("select name, professor, period from classList");
 				$classSelect->execute();
 				$result = $classSelect->get_result();
 				$resultData = array();
-				while ($row = $result->fetch_assoc() !== false)
-					array_push($resultData, $row);
-				var_dump($resultData); //DEBUG
+				while ($row = $result->fetch_assoc()) {
+					if (!in_array($row["name"], $resultData))
+						array_push($resultData, $row["name"]);
+				}
 				return ($resultData);
             } catch (exception $e){
 				var_dump($e);

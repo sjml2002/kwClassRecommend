@@ -19,7 +19,18 @@
 				//get response
 				request.onreadystatechange = function() {
 					if(request.readyState===XMLHttpRequest.DONE){
-						console.log(request.response); //Debuging
+						const divClassList = document.getElementById("classList");
+						resClassList = request.response.split("/");
+						console.log(resClassList); //DEBUG
+						
+						for(let i=0; i<resClassList.length; i++) {
+							const btn = document.createElement("button");
+							btn.appendChild(document.createTextNode(resClassList[i]));
+							btn.setAttribute("onclick", `classTable('${resClassList[i]}')`);
+							btn.setAttribute("id", resClassList);
+							divClassList.appendChild(btn);
+						}
+						
 						// const loginDIV = document.getElementById("loginDIV");
 						// const logoutDIV = document.getElementById("logoutDIV");
 						// if(request.response !== "false") {
@@ -48,6 +59,11 @@
 				return (request);
 			}
 		}
+
+		function classTable(classname) {
+			alert(classname + " 채팅방");
+		}
+
 	</script>
 
 	<body>
@@ -55,5 +71,7 @@
 		<p>
 			여기에 select 한 강의들 innert html 로 띄워보자
 		</p>
+
+		<div id="classList"> </div>
 	</body>
 </html>
