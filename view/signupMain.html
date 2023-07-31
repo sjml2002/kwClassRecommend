@@ -15,7 +15,6 @@
             const id = signupForm.ID.value;
             const pw = signupForm.PW.value;
 			const major = signupForm.Major.value;
-			const subMajor = signupForm.SubMajor.value;
 			const majorList = [
 				'전자공학과', '전자통신공학과', '전자융합공학과', '전자재료공학과', '전기공학과',  '로봇학부',
 				'컴퓨터정보공학부', '소프트웨어공학부', '정보융합학부',
@@ -38,15 +37,11 @@
 			else if(!majorList.includes(major)) {
 				alert(major + " 이라는 전공은 존재하지 않습니다.");
 			}
-			else if(subMajor!="" && !majorList.includes(subMajor)) {
-				alert(subMajor + " 이라는 전공은 존재하지 않습니다.");
-			}
             else { //id, pw 조건 통과 시
                 const signupData = JSON.stringify({
                     id: id,
                     pw: pw,
 					major: major,
-					subMajor: subMajor,
                     pageURL: "SignupProcess",
                     returnPageURL: "/index.html"
                 });
@@ -88,9 +83,8 @@
 			
 			<p> 자신의 전공을 입력해주세요. </p>
 			<p> (띄어쓰기 없이 한글로 정확히 입력) </p>
-			<input type="text" id="Major" placeholder="전공 입력"/> <br>
-			<p> 자신의 부전공이 있다면 입력해주세요. (심화,복수,부전공) </p>
-			<input type="text" id="SubMajor" placeholder="부전공 입력"/> <br><br>
+			<input type="text" id="Major" placeholder="전공 입력"/>
+            <br> <br>
 			<button type="button" onclick="signupSend()"> 회원가입 </button>
 		</form>
 	</body>

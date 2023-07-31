@@ -4,13 +4,12 @@
         private $pw;
         private $salt;
 		private $major;
-		private $subMajor;
 
-        function __construct($id, $pw, $major, $subMajor){
+        function __construct($id, $pw, $major){
             $this->setterID($id);
             $this->setterSalt();
             $this->setterPW($pw);
-			$this->setterMajor($major, $subMajor);
+			$this->setterMajor($major);
         }
 
         public function setterID($id) {
@@ -24,9 +23,8 @@
             $pw_salt = openssl_random_pseudo_bytes(32, $cstrong);
 			$this->salt = bin2hex($pw_salt);
         }
-		public function setterMajor($major, $subMajor) {
+		public function setterMajor($major) {
 			$this->major = $major;
-			$this->subMajor = $subMajor;
 		}
 
         public function getterID(){
@@ -40,9 +38,6 @@
         }
 		public function getterMajor() {
             return $this->major;
-        }
-		public function getterSubMajor() {
-            return $this->subMajor;
         }
     }
 ?>

@@ -38,7 +38,7 @@
         }
         else if($Data['pageURL'] === "SignupProcess") { //회원가입 요청
             require_once("../model/SignupProcess.php");
-            $result = signupProcess($Data["id"], $Data["pw"], $Data["major"], $Data["subMajor"]);
+            $result = signupProcess($Data["id"], $Data["pw"], $Data["major"]);
 			$result = json_decode($result);
            	if ($result->res) { echo "true"; }
 			else { echo $result->msg; }

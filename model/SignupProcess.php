@@ -1,11 +1,11 @@
 <?php
 	require_once('../lib/set_result.php');
     //root function
-    function signupProcess($id, $pw, $major, $subMajor) { 
+    function signupProcess($id, $pw, $major) { 
 		if (checkObject($id, $pw)) {
 			//create userDTO
 			require_once("../model/DTO/signupDTO.php");
-			$signUser = new SignupUserDTO($id, $pw, $major, $subMajor);
+			$signUser = new SignupUserDTO($id, $pw, $major);
 			//DB Insert
 			require_once("../model/DAO/signupDAO.php");
 			$signupSQLobject = new SignupSQL($signUser);
