@@ -2,12 +2,35 @@
 <html lang="ko">
 	<head>
 		<title> KRC 추천된 강의 시간표 </title>
-		<meta charset="utf-8" content-type="application/json" />
+		<meta charset="utf-8" content-type="application/json"/>
+		<meta name="viewport" content="width=device-width, initial-scale=1">
 	</head>
-
+	<link rel="stylesheet" href="./css/recommendedClass.css">
 	<script type="module">
 		import json from "/lib/readJson.js";
+		window.classJson = json;
+		viewFirstClass();
 		readRecommendedClassJson();
+		
+		function viewFirstClass() {
+			//input button 에 강의 최상위값 하나만 값 넣기
+			const days = ["MON", "TUE", "WED", "THU", "FRI"];
+			const dayskorean = ["월", "화", "수", "목", "금"];
+			const periods = ["1", "2", "3", "4", "5", "6"];
+			
+			for(let period of periods) {
+				for(let i=0; i<5; i++) {
+					const day = days[i];
+					const dayk = dayskorean[i];
+					const btn = document.getElementById("btn"+day+period);
+					const periodk = dayk+period;
+					const parsedJson = JSON.parse(json[periodk]);
+					const firstClassValue = parsedJson[0].name +"\n ... (more)"; //해당요일 해당교시에 추천된 1위 강의
+					btn.setAttribute("value", firstClassValue);
+				}
+			}
+  		}
+
 		function readRecommendedClassJson() {
 		// lib 경로에 있는 json 파일 읽기
 			console.log("in Browser: ", json);
@@ -15,15 +38,110 @@
 
 			//그 후 json 파일 지우기
 		}
-		window.onload = function() {
-			
-
-		}
-		
 	</script>
+
+	<script>
+		//day일 period교시의 추천된 강의 세부사항을 modal 창으로 보여주기
+		function openModal(day, period) {
+			const classJson = window.classJson;
+			const classPeriod = day+period;
+			const modal = document.getElementById("classInfoDiv");
+			modal.style.display = "block";
+			modal.innerHTML = `<h3 style="padding-left: 15px"> ${day+period} </h3>`;
+			const parsedJson = JSON.parse(classJson[classPeriod]);
+			for(const periodJson of parsedJson) {
+				const name = document.createElement("p");
+				name.textContent = periodJson.name;
+				const professor = document.createElement("p");
+				professor.textContent = periodJson.professor;
+				const score = document.createElement("p");
+				score.textContent = periodJson.score;
+
+				const classinfo = document.createElement("div");
+				classinfo.appendChild(name);
+				classinfo.appendChild(professor);
+				classinfo.appendChild(score);
+				classinfo.classList.add("classInfoOne");
+				modal.appendChild(classinfo);
+			}
+		}
+		function closeModal() {
+			
+		}
+	</script>
+
 
 	<body>
 		<h1> 추천된 강의 시간표 </h1>
+
+		<table class="scheduleTable">
+			<tr class="scheduleTr">
+				<th> </th>
+				<th class="scheduleTitle">월</th>
+				<th class="scheduleTitle">화</th>
+				<th class="scheduleTitle">수</th>
+				<th class="scheduleTitle">목</th>
+				<th class="scheduleTitle">금</th>
+			</tr>
+			<tr class="scheduleTr">
+				<th class="scheduleTitle"> 1교시 <div>09:00~10:15</div> </th>
+				<th> <input id="btnMON1" type="button" onclick="openModal('월', '1')" value=""/> </th> <!-- monday -->
+				<th> <input id="btnTUE1" type="button" onclick="openModal('화', '1')" value=""/> </th> <!-- Tuesday -->
+				<th> <input id="btnWED1" type="button" onclick="openModal('수', '1')" value=""/> </th> <!-- wendsday -->
+				<th> <input id="btnTHU1" type="button" onclick="openModal('목', '1')" value=""/> </th> <!-- Thursday -->
+				<th> <input id="btnFRI1" type="button" onclick="openModal('금', '1')" value=""/> </th> <!-- Friday -->
+			</tr>
+			<tr class="scheduleTr">
+				<th class="scheduleTitle"> 2교시 <div>10:30~11:45</div> </th>
+				<th> <input id="btnMON2" type="button" onclick="openModal('월', '2')" value=""/> </th> <!-- monday -->
+				<th> <input id="btnTUE2" type="button" onclick="openModal('화', '2')" value=""/> </th> <!-- Tuesday -->
+				<th> <input id="btnWED2" type="button" onclick="openModal('수', '2')" value=""/> </th> <!-- wendsday -->
+				<th> <input id="btnTHU2" type="button" onclick="openModal('목', '2')" value=""/> </th> <!-- Thursday -->
+				<th> <input id="btnFRI2" type="button" onclick="openModal('금', '2')" value=""/> </th> <!-- Friday -->
+			</tr>
+			<tr class="scheduleTr">
+				<th class="scheduleTitle"> 3교시 <div>12:00~13:15</div> </th>
+				<th> <input id="btnMON3" type="button" onclick="openModal('월', '3')" value=""/> </th> <!-- monday -->
+				<th> <input id="btnTUE3" type="button" onclick="openModal('화', '3')" value=""/> </th> <!-- Tuesday -->
+				<th> <input id="btnWED3" type="button" onclick="openModal('수', '3')" value=""/> </th> <!-- wendsday -->
+				<th> <input id="btnTHU3" type="button" onclick="openModal('목', '3')" value=""/> </th> <!-- Thursday -->
+				<th> <input id="btnFRI3" type="button" onclick="openModal('금', '3')" value=""/> </th> <!-- Friday -->
+			</tr>
+			<tr class="scheduleTr">
+				<th class="scheduleTitle"> 4교시 <div>13:30~14:45</div> </th>
+				<th> <input id="btnMON4" type="button" onclick="openModal('월', '4')" value=""/> </th> <!-- monday -->
+				<th> <input id="btnTUE4" type="button" onclick="openModal('화', '4')" value=""/> </th> <!-- Tuesday -->
+				<th> <input id="btnWED4" type="button" onclick="openModal('수', '4')" value=""/> </th> <!-- wendsday -->
+				<th> <input id="btnTHU4" type="button" onclick="openModal('목', '4')" value=""/> </th> <!-- Thursday -->
+				<th> <input id="btnFRI4" type="button" onclick="openModal('금', '4')" value=""/> </th> <!-- Friday -->
+			</tr>
+			<tr class="scheduleTr">
+				<th class="scheduleTitle"> 5교시 <div>15:00~16:15</div> </th>
+				<th> <input id="btnMON5" type="button" onclick="openModal('월', '5')" value=""/> </th> <!-- monday -->
+				<th> <input id="btnTUE5" type="button" onclick="openModal('화', '5')" value=""/> </th> <!-- Tuesday -->
+				<th> <input id="btnWED5" type="button" onclick="openModal('수', '5')" value=""/> </th> <!-- wendsday -->
+				<th> <input id="btnTHU5" type="button" onclick="openModal('목', '5')" value=""/> </th> <!-- Thursday -->
+				<th> <input id="btnFRI5" type="button" onclick="openModal('금', '5')" value=""/> </th> <!-- Friday -->
+			</tr>
+			<tr class="scheduleTr">
+				<th class="scheduleTitle"> 6교시 <div>16:30~17:45</div> </th>
+				<th> <input id="btnMON6" type="button" onclick="openModal('월', '6')" value=""/> </th> <!-- monday -->
+				<th> <input id="btnTUE6" type="button" onclick="openModal('화', '6')" value=""/> </th> <!-- Tuesday -->
+				<th> <input id="btnWED6" type="button" onclick="openModal('수', '6')" value=""/> </th> <!-- wendsday -->
+				<th> <input id="btnTHU6" type="button" onclick="openModal('목', '6')" value=""/> </th> <!-- Thursday -->
+				<th> <input id="btnFRI6" type="button" onclick="openModal('금', '6')" value=""/> </th> <!-- Friday -->
+			</tr>
+		</table>
+
+		<table class="onlineClassTable"> <!-- 비대면 강의 추천 -->
+			
+		</table>
+
+
+		<!-- 강의 세부 정보 창 -->
+		<div id="classInfoDiv">
+
+		</div>
 
 
 	</body>
