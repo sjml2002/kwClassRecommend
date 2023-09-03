@@ -2,10 +2,10 @@
 
 @@@@@@ 해야할 것 (계속해서 갱신) @@@@@@
 - 강의 별 게시판 view 만들기
-- 강의 별 게시판 벡엔드 만들기
 
-> recommendedClass View Modal창 좀 더 예쁘게 만들기
-> recommendedClass View 디자인 하기 (반응형)
+- 강의 별 게시판 벡엔드 만들기
+- result view 만들기
+
 > 밑의 회원정보와 관련된건 mvp 우선 만들고 생각해보기
 > 학번을 id로 하기로 했으니 학번을 제대로 입력했는지 검사하기 위해 학생증 검사 등의 방법이 필요할 듯
 > 회원정보 출력하는 mypage 만들기
@@ -15,8 +15,6 @@
 
 ########## 기록 ##########
 <br>
-- 2023/08/10
-	- (create) recommendedClassView && CSS directory
 - 2023/07/31
 	- (debug) classDAO -> fetch_row 한거 classGalleryMain(view) 로 넘어올 때 메모리초과 버그 수정
 	- (create) classGallery 각 강의 별 버튼 추가
