@@ -4,6 +4,7 @@
 		<title> KRC class gallery </title>
 		<meta charset="utf-8" content-type="application/json" />
 	</head>
+	<link rel="stylesheet" href="./css/all.css">
 
 	<script>
 		window.onload = function(){
@@ -51,11 +52,21 @@
 	</script>
 
 	<body>
-		<h1> 강의 게시판 </h1>
-		<p>
-			여기에 select 한 강의들 innert html 로 띄워보자
-		</p>
+		<div class="header">
+			<a href="/index.html">
+				<img class="header_home_btn_img" src="/lib/img/home_btn.png"/>
+			</a>
+		</div>
 
-		<div id="classList"> </div>
+		<div class="content">
+			<h1> 강의 게시판 </h1>
+			<p> 여기에 select 한 강의들 innert html 로 띄워보자 </p>
+			<div id="classList"> </div>
+		</div>
+
+		<div class="footer">
+			<img class="footer_logo_img" src="/lib/img/logo.png"/>
+			<p> Footer: 대충 아무내용 때려 넣기 </p>
+		</div>
 	</body>
 </html>
