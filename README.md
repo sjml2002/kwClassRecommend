@@ -15,6 +15,7 @@
 	- (create) view에서 header과 footer 만듦
 	- (create) newView.html -> 이제 앞으로 새로운 view페이지를 만들때는 newView.html을 복사해서 사용할 것
 	- (modify) recommendedClass.html 에서 강의계획서로 이동하는 a tag 추가
+	- (create) classGallery(게시판) 글 검색 입력 폼 만듦 
 - 2023/07/31
 	- (debug) classDAO -> fetch_row 한거 classGalleryMain(view) 로 넘어올 때 메모리초과 버그 수정
 	- (create) classGallery 각 강의 별 버튼 추가
