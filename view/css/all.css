@@ -19,6 +19,8 @@ body {
 
 .content {
     min-height: 70vh;
+    margin: 20px auto;
+    width: auto;
 }
 
 .footer {
