@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="ko">
+	<head>
+		<title> SCP createProject </title>
+		<meta charset="utf-8" content-type="application/json" />
+	</head>
+
+	<script>
+		/* 세션 정보 확인
+		window.onload = async function(){
+            const Data = JSON.stringify({
+				pageURL: "SessionVerify"
+			});
+			const url = "/controller/withDataPageRoute.php?data=" + Data;
+            HttpRequest(url, function(resultData) {
+                if(resultData !== "false") {
+                    //정상적으로 로그인 되어있음
+                    const writer = request.response;
+                    document.getElementById("writer").innerHTML = writer;
+                }
+                else {
+                    alert("로그인이 필요합니다.");
+                    window.location.href = "/index.html";
+                }
+            });
+            
+		}
+		*/
+		function ClassTest() {
+			
+		}
+
+        function InfoSend() {
+            const inputForm = document.getElementById("inputForm");
+
+            const majorTarget = document.getElementById("majorBox");
+            const majorValue = majorTarget.options[majorTarget.selectedIndex].value;
+			const yearTarget = document.getElementById("yearBox");
+			const yearValue = yearTarget.options[yearTarget.selectedIndex].value;
+			const semesterTarget = document.getElementById("semesterBox");
+			const semesterValue = semesterTarget.options[semesterTarget.selectedIndex].value;
+			const divideClassValue = document.getElementById("divideClass").value;
+			let assignmentValue = '';
+			let gradeValue = '';
+			let attendanceValue = '';
+			let teamplayValue = '';
+			let examValue = '';
+			let assignments = document.getElementsByName("assignment");
+			for (let assignment of assignments) {
+				if (assignment.checked)
+					assignmentValue = assignment.value;
+			}
+			let grades = document.getElementsByName("grade");
+			for (let grade of grades) {
+				if (grade.checked)
+					gradeValue = grade.value;
+			}
+			let attendances = document.getElementsByName("attendance");
+			for (let attendance of attendances) {
+				if (attendance.checked)
+					attendanceValue = attendance.value;
+			}
+			let teamplays = document.getElementsByName("teamplay");
+			for (let teamplay of teamplays) {
+				if (teamplay.checked)
+					teamplayValue = teamplay.value;
+			}
+			let exams = document.getElementsByName("exam");
+			for (let exam of exams) {
+				if (exam.checked)
+					examValue = exam.value;
+			}
+			
+			if (assignmentValue=='' || gradeValue=='' || attendanceValue=='' || teamplayValue=='' || examValue=='') {
+				alert("강의 테스트가 제대로 입력되지 않았습니다!");
+			}
+			else {
+				const reqData = JSON.stringify({
+					major: majorValue,
+					year: yearValue,
+					semester: semesterValue,
+					divideClass: divideClassValue,
+					assignment: assignmentValue,
+					grade: gradeValue,
+					attendance: attendanceValue,
+					teamplay: teamplayValue,
+					exam: examValue,
+					pageURL: "classAnalysis",
+					returnPageURL: "/index.html"
+				});
+				const url = "/controller/withDataPageRoute.php?data=" + reqData;
+				HttpRequest(url, function(resultData) {
+					if(resultData === "true") {
+						window.location.href = "./recommendedClass.html";
+					}
+					else {
+						console.log(resultData);
+						alert("실패... 다시 시도해주세요.");
+					}
+				});
+			}
+        }
+		
+		//httpRequest로 데이터 보내기 (withDataPageRouting.php에만 적용)
+        async function HttpRequest(url, callback){
+            request = new XMLHttpRequest();
+            request.open("GET", url, true);
+            request.setRequestHeader("Content-type", "application/json");
+            request.send(); //$_GET['data']
+            //get response
+            request.onreadystatechange = function() {
+                if(request.readyState===XMLHttpRequest.DONE){
+                    const returnData = request.response;
+                    callback(returnData);
+                }
+            }
+        }
+	</script>
+
+	<body>
+		<h1> SCP createProject 페이지 </h1>
+		<form id="inputForm">
+            <div name="major"> 
+                전공 선택하기:
+                <select id="majorBox">
+                    <option value="전자공학과"> 전자공학과 </option>
+					<option value="전자통신공학과"> 전자통신공학과 </option>
+					<option value="전자융합공학과"> 전자융합공학과 </option>
+					<option value="전자재료공학과"> 전자재료공학과 </option>
+					<option value="전기공학과"> 전기공학과 </option>
+					<option value="로봇학부"> 로봇학부 </option>
+					<option value="소프트웨어학부"> 소프트웨어학부 </option>
+					<option value="컴퓨터정보공학부"> 컴퓨터정보공학부 </option>
+					<option value="정보융합학부"> 정보융합학부 </option>
+					<option value="화학공학과"> 화학공학과 </option>
+					<option value="환경공학과"> 환경공학과 </option>
+					<option value="건축공학과"> 건축공학과 </option>
+					<option value="건축학과"> 건축학과 </option>
+					<option value="수학과"> 수학과 </option>
+					<option value="화학과"> 화학과 </option>
+					<option value="전자바이오물리학과"> 전자바이오물리학과 </option>
+					<option value="스포트융합과학과"> 스포트융합과학과 </option>
+					<option value="정보콘텐츠학과"> 정보콘텐츠학과(야) </option>
+					<option value="경영학부"> 경영학부 </option>
+					<option value="국제통상학부"> 국제통상학부 </option>
+					<option value="국어국문학과"> 국어국문학과 </option>
+					<option value="영어산업학과"> 영어산업학과 </option>
+					<option value="산업심리학과"> 산업심리학과 </option>
+					<option value="미디어커뮤니케이션학부"> 미디어커뮤니케이션학부 </option>
+					<option value="동북아문화산업학부"> 동북아문화산업학부 </option>
+					<option value="행정학과"> 행정학과 </option>
+					<option value="법학부"> 법학부 </option>
+					<option value="국제학부"> 국제학부 </option>
+					<option value="자산관리학과"> 자산관리학과(야) </option>
+				</select>
+			</div>
+			<div name="grade">
+				학년 학기 선택하기: 
+                <select id="yearBox">
+                    <option value="1"> 1학년 </option>
+					<option value="2"> 2학년 </option>
+					<option value="3"> 3학년 </option>
+					<option value="4"> 4학년 </option>
+				</select>
+				<select id="semesterBox">
+                    <option value="1"> 1학기 </option>
+					<option value="2"> 2학기 </option>
+				</select>
+			</div>
+			<div name="divdeClass">
+				분반: <input id="divideClass" type="text" placeholder="알파벳은 대문자로 입력" />
+			</div>
+			<div name="test">
+				<p> 나에게 맞는 강의 테스트하기! </p>
+				<div name="assignmentBox">
+					<p name="question"> 나는... </p>
+					<input type="radio" name="assignment" value="많음" />
+					<label for="많음"> 과제가 많은 대신 시험성적비율이 적었으면 좋겠다. </label>
+					<input type="radio" name="assignment" value="보통" />
+					<label for="보통"> 적당한게 좋다 </label>
+					<input type="radio" name="assignment" value="없음" />
+					<label for="적음"> 역시 과제는 적은게 좋지! </label>
+				</div>
+				<div name="gradeBox">
+					<p name="question"> 나는 성적이... </p>
+					<input type="radio" name="grade" value="깐깐함" />
+					<label for="깐깐함"> 깐깐한게 좋다. 왜냐면 난 어차피 잘할거거든 </label>
+					<input type="radio" name="grade" value="너그러움" />
+					<label for="너그러움"> 교수님 제가 이따구지만 성적은 잘 주실거죠...? </label>
+				</div>
+				<div name="attendanceBox">
+					<p name="question"> 나는 교수님이... </p>
+					<input type="radio" name="attendance" value="직접호명" />
+					<label for="직접"> 출석은 직접 호명해주셨으면 좋겠다. </label>
+					<input type="radio" name="attendance" value="전자출결" />
+					<label for="전자"> 그냥 조용히 있고 싶어.. 알아서 하시면 좋겠다. </label>
+					<input type="radio" name="attendance" value="반영안함" />
+					<label for="직접"> 출석은 제발 성적에 포함되지 않게 해주세요...! </label>
+					<input type="radio" name="attendance" value="복합적" />
+					<label for="직접"> 상관없다. </label>
+				</div>
+				<div name="teamplayBox">
+					<p name="question"> 나는 팀플이... </p>
+					<input type="radio" name="teamplay" value="많음" />
+					<label for="많음"> 역시 대학생활은 팀플이지! </label>
+					<input type="radio" name="teamplay" value="보통" />
+					<label for="보통"> 그냥 뭐 있으면 있는거고 없으면 없는거지. </label>
+					<input type="radio" name="teamplay" value="없음" />
+					<label for="적음"> 난 마이웨이로 간다. 팀플 싫어 ㅜㅜ </label>
+				</div>
+				<div name="examBox">
+					<p name="question"> 나는... </p>
+					<input type="radio" name="exam" value="없음" />
+					<label for="한번"> 시험대신 과제로 안될까? 시험대체과제 짱! </label>
+					<input type="radio" name="exam" value="두번" />
+					<label for="한번"> 그냥 중간, 기말 있으면 무난무난하다. </label>
+					<input type="radio" name="exam" value="세번" />
+					<label for="두번"> 이제 기회는 한번뿐! 시험에 올인한다. </label>
+				</div>
+			</div>
+			<div>
+				<input type="button" value="강의 추천받으러 진짜 가기!!" onclick="InfoSend()"/>
+			</div>
+		</form>
+	</body>
+</html>

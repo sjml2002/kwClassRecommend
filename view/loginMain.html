@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="ko">
+	<head>
+		<title> SCP Login </title>
+		<meta charset="utf-8" content-type="application/json" />
+	</head>
+
+	<script>
+		window.onload = function(){
+			const response = new Response();
+		}
+
+        function loginSend() {
+            const loginForm = document.getElementById("loginForm");
+            const id = loginForm.loginID.value;
+            const pw = loginForm.loginPW.value;
+
+            const loginData = JSON.stringify({
+                id: id,
+                pw: pw,
+                pageURL: "LoginProcess",
+                returnPageURL: "/index.html"
+            });
+            const url = "/controller/withDataPageRoute.php?data=" + loginData;
+            HttpRequest(url);
+        }
+
+        //httpRequest로 데이터 보내기 (withDataPageRouting.php에만 적용)
+        function HttpRequest(url){
+            request = new XMLHttpRequest();
+            request.open("GET", url, true);
+            request.setRequestHeader("Content-type", "application/json");
+            request.send(); //$_GET['data']
+            //get response
+            request.onreadystatechange = function() {
+                if(request.readyState===XMLHttpRequest.DONE){
+                    console.log(request.response);
+                    if(request.response === "true") {
+                        window.location.href = "../index.html";
+                    }
+                    else{
+                        alert("아이디나 비밀번호가 다릅니다.");
+                    }
+                }
+            }
+        }
+	</script>
+
+	<body>
+		<h1> 로그인 페이지 </h1>
+		<form id="loginForm">
+            <input type="text" id="loginID" placeholder="학번 입력" />
+            <input type="password" id="loginPW" placeholder="비밀번호 입력" />
+			<button type="button" onclick="loginSend()"> 로그인 </button>
+		</form>
+	</body>
+</html>

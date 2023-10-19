@@ -1,37 +1,47 @@
-[2021/08/05 업데이트]
+> [나의 dbdiagram](https://dbdiagram.io/d/649a69d802bd1c4a5e1cc00c)
 
-- 회원가입 페이지와 서버 연결 완료
-- AWS 연결시 500 error 뜨면 DB sql query문 확인해볼것 (특히 대소문자)
+@@@@@@ 해야할 것 (계속해서 갱신) @@@@@@
+- 강의 별 게시판 view 만들기
 
+- 강의 별 게시판 벡엔드 만들기
+- result view 만들기
+
+> 밑의 회원정보와 관련된건 mvp 우선 만들고 생각해보기
+> 학번을 id로 하기로 했으니 학번을 제대로 입력했는지 검사하기 위해 학생증 검사 등의 방법이 필요할 듯
+> 회원정보 출력하는 mypage 만들기
+
+@@@@@@@@@@@@@@@@@@@@@@@@
+<br> <br>
+
+########## 기록 ##########
 <br>
-[2021/07/30 업데이트]
-
-- location값 넣을때 id조회해서 age, gender, job도 같이 insert 해줌
-
-<br>
-[2021/07/26 업데이트]
-
-- AWS new server connecting
-- populationData에서 유동인구수(population변수)도 넘길 수 있도록 수정
-
-<br>
-[2021/07/17 업데이트]
-
-- 유동인구 데이터 받아오는 populationData.php 파일 create
-    => DB연결 작업 필요 (DB (clensingData)에 저장되어 있는 위/경도와 어떤 방법으로 기준점(현재 지도의 중심 위/경도)과 가까운 데이터들만 추출할 것인지 알고리즘 강구 필요)
-
-<br>
-[2021/06/26 업데이트]
-
-- 회원가입 사용자정보 DB insert 구현
-    => 데이터목록: id, pw, salt, age, gender, job
-- id로 사용자정보 get 구현
-- id와 pw로 Login 구현
-- DBconnect에러 발생시 errorMessage띄우도록 구현
-- 서버->프론트로 가는 모든 데이터는 result를 포함함 (true면 정상적 실행, false면 에러)
-    => 이떄 false반환시 errorMessage데이터 함께 보내기
-
-<br>
-[2021/06/25 업데이트]
-
-- location table에 위도(latitude)와 경도(longitude) insert구현
+- 2023/07/31
+	- (debug) classDAO -> fetch_row 한거 classGalleryMain(view) 로 넘어올 때 메모리초과 버그 수정
+	- (create) classGallery 각 강의 별 버튼 추가
+- 2023/07/06
+	- (create) 강의 별 게시판 초기 작업 진행 중 (방 만들기 진행중)
+- 2023/07/03
+	- (delete) subMajor 삭제
+	- (create) 강의 별 게시판 DB
+- 2023/06/27
+	- (modify) DB table user_info의 major 및 submajor 의 FK 생성 후 majorList의 name 과 연결
+- 2023/06/23
+	- (modify) 입력 폼에서 분반 및 강의 파악 테스트지 추가 완료 [classAnalysis]
+- 2023/04/29
+	- (modify) classList에 2022년도 2학기 강의 추가 완료
+- 2023/02/19
+	- (modify) createProject -> inputForAnalysis
+	- (create) model/classAnalysis.php
+		- classAnalysis.php는 실제 추천분석하는 ML로 데이터를 보내고 result를 받는 controller 역할
+	- (create) DB classList, DB majorList
+- 2023/01/20
+	- (create) lib/set_result.php
+- 2023/01/09
+	- (add) user_info 테이블 필드: major, subMajor
+	- (create) 회원 정보: major, subMajor
+	- (modify) ID -> 학번
+- 2023/01/08
+	- 죽어있던 프로젝트 다시 살림 ㅋㅋ
+- 2021/06/18
+	- 로그인 구현완료
+	- 프로젝트 생성 기능 구현 완료 (DB저장까지 완료)

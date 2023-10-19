@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="ko">
+	<head>
+		<title> KRC class gallery </title>
+		<meta charset="utf-8" content-type="application/json" />
+	</head>
+
+	<script>
+		window.onload = function(){
+			selectClass();
+			function selectClass() {
+				const Data = JSON.stringify({
+					pageURL: "classList",
+					query: "selectAll",
+				});
+				const url = "/controller/withDataPageRoute.php?data=" + Data;
+
+				const request = HttpRequest(url);
+				//get response
+				request.onreadystatechange = function() {
+					if(request.readyState===XMLHttpRequest.DONE){
+						const divClassList = document.getElementById("classList");
+						resClassList = request.response.split("/");
+						console.log(resClassList); //DEBUG
+						
+						for(let i=0; i<resClassList.length; i++) {
+							const btn = document.createElement("button");
+							btn.appendChild(document.createTextNode(resClassList[i]));
+							btn.setAttribute("onclick", `classTable('${resClassList[i]}')`);
+							btn.setAttribute("id", resClassList);
+							divClassList.appendChild(btn);
+						}
+					}
+				}
+			}
+			//httpRequest로 데이터 보내기 (withDataPageRouting.php에만 적용)
+			function HttpRequest(url){
+				request = new XMLHttpRequest();
+				request.open("GET", url, true);
+				request.setRequestHeader("Content-type", "application/json");
+				request.send(); //$_GET['data']
+				//get response
+				return (request);
+			}
+		}
+
+		function classTable(classname) {
+			alert(classname + " 채팅방");
+		}
+
+	</script>
+
+	<body>
+		<h1> 강의 게시판 </h1>
+		<p>
+			여기에 select 한 강의들 innert html 로 띄워보자
+		</p>
+
+		<div id="classList"> </div>
+	</body>
+</html>
