@@ -10,6 +10,7 @@
 	<script type="module">
 		import json from "/lib/readJson.js";
 		window.classJson = json;
+		console.log(window.classJson); //debug
 		viewFirstClass();
 		readRecommendedClassJson();
 		
@@ -57,12 +58,18 @@
 				professor.textContent = periodJson.professor;
 				const score = document.createElement("p");
 				score.textContent = periodJson.score;
+				const period = document.createElement("p");
+				period.textContent = periodJson.period;
+				const number = document.createElement("p");
+				period.textContent = periodJson.number;
 
 				const classinfo = document.createElement("div");
 				classinfo.appendChild(name);
 				classinfo.appendChild(professor);
+				classinfo.appendChild(period);
+				classinfo.appendChild(number);
 				classinfo.appendChild(score);
-				classinfo.classList.add("classInfoOne");
+				classinfo.classList.add("classInfoOne"); //css를 위한 class 태그 추가
 				modal.appendChild(classinfo);
 			}
 		}
