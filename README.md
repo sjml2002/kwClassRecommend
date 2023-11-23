@@ -13,9 +13,10 @@
 
 ########## 기록 ##########
 <br>
+- 2023/11/23
+	- (modify) scp.sql DB안에 classList의 강의들 한글 깨지는거 오류 수정
 - 2023/11/22
 	- (modify) 민성측에서 rank.json 업데이트함
-
 - 2023/10/19
 	- (create) view에서 header과 footer 만듦
 	- (create) newView.html -> 이제 앞으로 새로운 view페이지를 만들때는 newView.html을 복사해서 사용할 것
