@@ -4,6 +4,7 @@
 		<title> SmallCommunityProject </title>
 		<meta charset="utf-8" content-type="application/json" />
 	</head>
+	<link rel="stylesheet" href="./view/css/all.css">
 
 	<script>
 		window.onload = function(){
@@ -73,50 +74,62 @@
 	</script>
 
 	<body>
-		<h1> Hello world! </h1>
+		<div class="header">
+			<a href="/index.html">
+				<img class="header_home_btn_img" src="/lib/img/home_btn.png"/>
+			</a>
+		</div>
 
-		<!-- 로그인 -->
-		<div id="loginDIV">
+		<div class="content">
+			<h1> Hello world! </h1>
+
+			<!-- 로그인 -->
+			<div id="loginDIV">
+				<form action="/controller/rendingPageRoute.php" method="GET">
+					<input type="hidden" name="pageURL" value="loginMain"/>
+					<input type="hidden" name="returnPageURL" value="loginMain.html"/>
+					<button> 로그인 </button>
+				</form>
+			</div>
+
+			<!-- 로그아웃 -->
+			<div id="logoutDIV" style="display:none">
+				<p id="userIDinfo"> </p>
+				<form>
+					<button type="button" onclick="logoutRequest()"> 로그아웃 </button>
+				</form>
+			</div>
+
+			<br>
+			
+			<!-- 회원가입 -->
 			<form action="/controller/rendingPageRoute.php" method="GET">
-				<input type="hidden" name="pageURL" value="loginMain"/>
-				<input type="hidden" name="returnPageURL" value="loginMain.html"/>
-				<button> 로그인 </button>
+				<input type="hidden" name="pageURL" value="signupMain"/>
+				<input type="hidden" name="returnPageURL" value="signupMain.html"/>
+				<button> 회원가입 </button>
+			</form>
+			<br>
+
+			<!-- 강의 추천 -->
+			<form action="/controller/rendingPageRoute.php" method="GET">
+				<input type="hidden" name="pageURL" value="inputForAnalysis"/>
+				<input type="hidden" name="returnPageURL" value="inputForAnalysis.html"/>
+				<button> 강의 추천받으러 가기! </button>
+			</form>
+
+			<br>
+			
+			<!-- 강의 별 게시판 -->
+			<form action="/controller/rendingPageRoute.php" method="GET">
+				<input type="hidden" name="pageURL" value="classGalleryMain"/>
+				<input type="hidden" name="returnPageURL" value="classGalleryMain.html"/>
+				<button> 강의 게시판 </button>
 			</form>
 		</div>
-
-		<!-- 로그아웃 -->
-		<div id="logoutDIV" style="display:none">
-			<p id="userIDinfo"> </p>
-			<form>
-				<button type="button" onclick="logoutRequest()"> 로그아웃 </button>
-			</form>
+		
+		<div class="footer">
+			<img class="footer_logo_img" src="/lib/img/logo.png"/>
+			<p> Footer: 대충 아무내용 때려 넣기 </p>
 		</div>
-
-		<br>
-		
-		<!-- 회원가입 -->
-		<form action="/controller/rendingPageRoute.php" method="GET">
-			<input type="hidden" name="pageURL" value="signupMain"/>
-			<input type="hidden" name="returnPageURL" value="signupMain.html"/>
-			<button> 회원가입 </button>
-		</form>
-		<br>
-
-		<!-- 강의 추천 -->
-		<form action="/controller/rendingPageRoute.php" method="GET">
-			<input type="hidden" name="pageURL" value="inputForAnalysis"/>
-			<input type="hidden" name="returnPageURL" value="inputForAnalysis.html"/>
-			<button> 강의 추천받으러 가기! </button>
-		</form>
-
-		<br>
-		
-		<!-- 강의 별 게시판 -->
-		<form action="/controller/rendingPageRoute.php" method="GET">
-			<input type="hidden" name="pageURL" value="classGalleryMain"/>
-			<input type="hidden" name="returnPageURL" value="classGalleryMain.html"/>
-			<button> 강의 게시판 </button>
-		</form>
-		
 	</body>
 </html>

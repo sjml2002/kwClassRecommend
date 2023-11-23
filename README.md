@@ -1,10 +1,8 @@
 > [나의 dbdiagram](https://dbdiagram.io/d/649a69d802bd1c4a5e1cc00c)
 
 @@@@@@ 해야할 것 (계속해서 갱신) @@@@@@
-- 강의 별 게시판 view 만들기
 
-- 강의 별 게시판 벡엔드 만들기
-- result view 만들기
+* rank.json을 읽는 readJson.js가 실행되지 않고 있음
 
 > 밑의 회원정보와 관련된건 mvp 우선 만들고 생각해보기
 > 학번을 id로 하기로 했으니 학번을 제대로 입력했는지 검사하기 위해 학생증 검사 등의 방법이 필요할 듯
@@ -15,6 +13,14 @@
 
 ########## 기록 ##########
 <br>
+- 2023/11/22
+	- (modify) 민성측에서 rank.json 업데이트함
+
+- 2023/10/19
+	- (create) view에서 header과 footer 만듦
+	- (create) newView.html -> 이제 앞으로 새로운 view페이지를 만들때는 newView.html을 복사해서 사용할 것
+	- (modify) recommendedClass.html 에서 강의계획서로 이동하는 a tag 추가
+	- (create) classGallery(게시판) 글 검색 입력 폼 만듦 
 - 2023/07/31
 	- (debug) classDAO -> fetch_row 한거 classGalleryMain(view) 로 넘어올 때 메모리초과 버그 수정
 	- (create) classGallery 각 강의 별 버튼 추가
