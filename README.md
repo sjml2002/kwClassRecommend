@@ -13,6 +13,10 @@
 
 ########## 기록 ##########
 <br>
+- 2023/11/25
+	- (create) inputForAnalysis에서 주관식으로 쓸 수 있는 입력칸 만듦
+	- (create) inputForAnalysis에서 간단한 강의 검색 구현함
+	- (create) classSearch.html 만듦 (메인화면에서 강의평 게시판 검색) --> 아직 많이 손봐야함
 - 2023/11/23
 	- (modify) scp.sql DB안에 classList의 강의들 한글 깨지는거 오류 수정
 - 2023/11/22
