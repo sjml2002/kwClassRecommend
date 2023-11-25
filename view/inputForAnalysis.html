@@ -5,6 +5,7 @@
 		<meta charset="utf-8" content-type="application/json" />
 	</head>
 	<link rel="stylesheet" href="./css/all.css">
+	<link rel="stylesheet" href="./css/inputForAnalysis.css">
 
 	<script>
 		/* 세션 정보 확인
@@ -27,8 +28,44 @@
             
 		}
 		*/
-		function ClassTest() {
-			
+		function classSearchSubmit() {
+			const className = document.getElementById("className").value;
+			const professor = document.getElementById("professor").value;
+			const number = document.getElementById("number").value;
+			if (className.length<=1 && professor.length<=1 && number.length<=1) {
+				alert("한글자 이상 입력해주세요!");
+			}
+			else {
+				const reqData = JSON.stringify({
+					className: className,
+					classProfessor: professor,
+					classNumber: number,
+					pageURL: "classList",
+					query: "select",
+				});
+				const url = "/controller/withDataPageRoute.php?data=" + reqData;
+				HttpRequest(url, function(resultData) {
+					if(resultData === "false") {
+						alert("검색결과가 존재하지 않습니다.");
+					}
+					else {
+						//display 검색 리스트
+						const classList = resultData.split("/");
+						const modal = document.getElementById("searchList");
+						modal.innerHTML = '';
+						modal.style.display = "block";
+						for (let i=0; i<classList.length-1; i++) {
+							const oneClass = classList[i];
+							const splitedClass = oneClass.split(",");
+							// const className = splitedClass[0];
+							// const classProfessor = splitedClass[1];
+							const classNumber = splitedClass[2];
+							const radioBtn = `<div class="searchItem"><input type="radio" name="searchItem" id=${classNumber} value=${classNumber} /> <label for=${classNumber}> ${oneClass} </label> </div>`
+							modal.innerHTML += radioBtn;
+						}
+					}
+				});	
+			}
 		}
 
         function InfoSend() {
@@ -41,11 +78,13 @@
 			const semesterTarget = document.getElementById("semesterBox");
 			const semesterValue = semesterTarget.options[semesterTarget.selectedIndex].value;
 			const divideClassValue = document.getElementById("divideClass").value;
+			const textAnswerValue = document.getElementById("textanswer").value;
 			let assignmentValue = '';
 			let gradeValue = '';
 			let attendanceValue = '';
 			let teamplayValue = '';
 			let examValue = '';
+			let searchClassValue = '';
 			let assignments = document.getElementsByName("assignment");
 			for (let assignment of assignments) {
 				if (assignment.checked)
@@ -71,6 +110,11 @@
 				if (exam.checked)
 					examValue = exam.value;
 			}
+			let searchItem = document.getElementsByName("searchItem");
+			for (let oneclass of searchItem) {
+				if (oneclass.checked)
+					searchClassValue = oneclass.value;
+			}
 			
 			if (assignmentValue=='' || gradeValue=='' || attendanceValue=='' || teamplayValue=='' || examValue=='') {
 				alert("강의 테스트가 제대로 입력되지 않았습니다!");
@@ -86,6 +130,8 @@
 					attendance: attendanceValue,
 					teamplay: teamplayValue,
 					exam: examValue,
+					textAnswer: textAnswerValue,
+					searchClass: searchClassValue,
 					pageURL: "classAnalysis",
 					returnPageURL: "/index.html"
 				});
@@ -224,6 +270,20 @@
 						<label for="한번"> 그냥 중간, 기말 있으면 무난무난하다. </label>
 						<input type="radio" name="exam" value="세번" />
 						<label for="두번"> 이제 기회는 한번뿐! 시험에 올인한다. </label>
+					</div>
+					<div class="shortTextAnswer">
+						<input id="textanswer" type="text" placeholder="원하는 강의를 더 자세히 적어주세요!"/>
+						<p> 예시) 시험은 오픈북으로 했으면 좋겠고, 수업내용이 정말 배울만한 내용이었으면 좋겠다.</p>
+						<p> 길고 구체적일수록 좋습니다! </p>
+					</div>
+					<div class="classSearch">
+						<p> 마음에 들었던 강의 1개 고르기 </p>
+						<input type="text" id="className" class="searchBar" placeholder="강의명" />
+						<input type="text" id="professor" class="searchBar" placeholder="교수명" />
+						<input type="text" id="number" class="searchBar" placeholder="학정번호" />
+						<input type="button" value="검색" onclick="classSearchSubmit()" />
+						<div id="searchList" display="none"> </div>
+						<div id="likeClass" display="none"> </div>
 					</div>
 				</div>
 				<div>

@@ -24,7 +24,24 @@
 			return false;
 		}
 		function querySelect() {
-			return false;
+			try{
+                require_once("../model/DBconnect.php");
+				$likename = "%".$this->name."%";
+				$likepf = "%".$this->professor."%";
+				$likenumber = "%".$this->number."%";
+				$classSelect = $db_conn->prepare("select name, professor, number from classList where name like ? and professor like ? and number like ?");
+				$classSelect->bind_param("sss", $likename, $likepf, $likenumber);
+				$classSelect->execute();
+				$result = $classSelect->get_result();
+				$resultData = array();
+				while ($row = $result->fetch_assoc()) {
+					$tmpArr = array($row["name"], $row["professor"], $row["number"]);
+					array_push($resultData, $tmpArr);
+				}
+				return ($resultData);
+            } catch (exception $e){
+                return false;
+            }
 		}
         function querySelectAll(){
             try{
@@ -39,7 +56,6 @@
 				}
 				return ($resultData);
             } catch (exception $e){
-				var_dump($e);
                 return false;
             }
         }

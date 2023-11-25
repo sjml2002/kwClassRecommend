@@ -15,8 +15,9 @@
 				return (make_result(false, "classList(insert): 아직 구현되지 않은 기능입니다."));
 		}
 		else if ($Data['query'] === "select") {
-			if ($classListSQL->querySelect())
-				return (make_result(true, "classList에 특정 데이터 select 성공!"));
+			$classList = $classListSQL->querySelect();
+			if ($classList)
+				return (make_result(true, "", $classList));
 			else
 				return (make_result(false, "classList(select_something): 아직 구현되지 않은 기능입니다."));
 		}

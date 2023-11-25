@@ -1,0 +1,50 @@
+body{
+
+}
+
+.shortTextAnswer {
+    border: 1px solid;
+    border-color: #000000;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    display: flex;
+    flex-direction: column;
+}
+
+.shortTextAnswer > input {
+    margin: 10px;
+    align-self: center;
+    width: 80%;
+    height: 30px;
+}
+
+.classSearch {
+    margin-top: 10px;
+    margin-bottom: 10px;
+    padding: 5px;
+    border: 1px solid;
+    border-color: #000000;
+}
+
+.searchItem {
+    margin-top: 20px;
+    margin-bottom: 10px;
+}
+.searchItem input[type='radio'] { /*라디오 버튼 안보이게 */
+    opacity: 0;
+}
+.searchItem label {
+    color: #ffffff;
+    background-color: #5956c1;
+    border-radius: 5px;
+    padding: 5px;
+}
+.searchItem label:hover { /* 마우스 커서 올렸을때, */
+    border: 2px solid;
+    border-color: deeppink;
+    box-shadow: 3px 3px 3px 3px;
+}
+.searchItem input[type='radio']:checked + label{ /* 버튼 눌렀을 때 효과 */
+    border: 2px solid;
+    border-color: deeppink;
+}

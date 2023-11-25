@@ -11,7 +11,9 @@
 		// echo "출결방식: ".$Data['attendance']."\n";
 		// echo "조모임: ".$Data['teamplay']."\n";
 		// echo "시험횟수: ".$Data['exam']."\n";
-		//일부러 echo 했음 이제 이걸로 강의 분석하면됨
+		// echo "주관식: ".$Data['textAnswer']."\n";
+		// echo "마음에 들었떤 강의: ".$Data['searchClass']."\n";
+		//위의 echo 들은 input에 대한 debug echo
 
 		//1. ML 서버에 http request 해서 lib에 json 파일 저장
 		//1-1. (test) request했다치고 가져온 json file 은 /test_jsonFile 에 있음

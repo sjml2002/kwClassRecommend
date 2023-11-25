@@ -77,12 +77,18 @@
 			require_once("../model/classListQueryMain.php");
 			$result = classListQueryMain($Data);
 			$result = json_decode($result);
-			if ($result->res) { 
-                foreach($result->data as $className) {
-                    echo ($className."/");
+			if ($result->res) {
+                foreach($result->data as $class) {
+                    foreach($class as $item) {
+                        echo ($item.",");
+                    }
+                    echo ("/");
                 }
             }
-			else { echo $result->msg; }
+			else {
+                echo "false"; 
+                //echo $result->msg;
+            }
 		}
         else{
             throw new exception("404");
