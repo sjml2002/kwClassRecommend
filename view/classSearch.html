@@ -1,0 +1,76 @@
+<!-- 앞으로는 세 View를 작성하기 위해서 이 페이지를 복사해서 사용할 것-->
+<!DOCTYPE html>
+<html lang="ko">
+	<head>
+		<title> 강의 검색 </title>
+		<meta charset="utf-8" content-type="application/json" />
+	</head>
+	<link rel="stylesheet" href="./css/all.css">
+
+	<script>
+		function classSearchSubmit() {
+			const className = document.getElementById("className");
+			const professor = document.getElementById("professor");
+			const number = document.getElementById("number");
+
+			if (className.length<=1 && professor.length<=1 && number.length<=1) {
+				alert("한글자 이상 입력해주세요!");
+			}
+			else {
+				const reqData = JSON.stringify({
+					className: className,
+					professor: professor,
+					number: number,
+					pageURL: "classList",
+					query: "select",
+					returnPageURL: "/index.html"
+				});
+				const url = "/controller/withDataPageRoute.php?data=" + reqData;
+				HttpRequest(url, function(resultData) {
+					if(resultData === "true") {
+						window.location.href = "./recommendedClass.html";
+					}
+					else {
+						console.log(resultData);
+						alert("실패... 다시 시도해주세요.");
+					}
+				});	
+			}
+		}
+
+		//httpRequest로 데이터 보내기 (withDataPageRouting.php에만 적용)
+        async function HttpRequest(url, callback){
+            request = new XMLHttpRequest();
+            request.open("GET", url, true);
+            request.setRequestHeader("Content-type", "application/json");
+            request.send(); //$_GET['data']
+            //get response
+            request.onreadystatechange = function() {
+                if(request.readyState===XMLHttpRequest.DONE){
+                    const returnData = request.response;
+                    callback(returnData);
+                }
+            }
+        }
+	</script>
+
+	<body>
+		<div class="header">
+			<a href="/index.html">
+				<img class="header_home_btn_img" src="/lib/img/home_btn.png"/>
+			</a>
+		</div>
+
+		<div class="content">
+			<input type="text" id="className" class="searchBar" placeholder="강의명" />
+			<input type="text" id="professor" class="searchBar" placeholder="교수명" />
+			<input type="text" id="number" class="searchBar" placeholder="학정번호" />
+			<input type="button" value="검색" onclick="classSearchSubmit()" />
+		</div>
+		
+		<div class="footer">
+			<img class="footer_logo_img" src="/lib/img/logo.png"/>
+			<p> Footer: 대충 아무내용 때려 넣기 </p>
+		</div>
+	</body>
+</html>
